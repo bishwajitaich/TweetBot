@@ -11,8 +11,6 @@
 
 @interface TweetViewController ()
 
-- (IBAction)onLogout:(id)sender;
-
 @end
 
 @implementation TweetViewController
@@ -20,6 +18,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.title = @"Home";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStylePlain target:self action:@selector(onNewTweet)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onLogout)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,7 +38,11 @@
 }
 */
 
-- (IBAction)onLogout:(id)sender {
+- (void)onLogout {
     [User logout];
+}
+
+- (void)onNewTweet {
+    
 }
 @end

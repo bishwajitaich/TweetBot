@@ -31,7 +31,8 @@
     [[TwitterClient sharedInstance]loginWithCompletion:^(User *user, NSError *error) {
         if (user != nil) {
             NSLog(@"username: %@", user.username);
-            [self presentViewController:[[TweetViewController alloc]init] animated:YES completion:nil];
+            UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:[[TweetViewController alloc] init]];
+            [self presentViewController:nvc animated:YES completion:nil];
         } else {
             NSLog(@"Error: %@", error.localizedDescription);
         }
