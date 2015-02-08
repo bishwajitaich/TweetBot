@@ -1,0 +1,27 @@
+PODS:
+  - AFNetworking/NSURLConnection (2.5.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.5.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.0)
+  - AFNetworking/Security (2.5.0)
+  - AFNetworking/Serialization (2.5.0)
+  - BDBOAuth1Manager (1.5.0):
+    - AFNetworking/NSURLConnection (~> 2.5.0)
+    - AFNetworking/NSURLSession (~> 2.5.0)
+  - YLMoment (0.5.1)
+
+DEPENDENCIES:
+  - BDBOAuth1Manager
+  - YLMoment
+
+SPEC CHECKSUMS:
+  AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
+  BDBOAuth1Manager: 274574557077abc873fc5688abe8b991e782749c
+  YLMoment: a5e6733c66490fd736db325f5d339cb511bdfb54
+
+COCOAPODS: 0.35.0

@@ -1,0 +1,82 @@
+//
+//  TwitterClient.m
+//  Twitter
+//
+//  Created by Bishwajit Aich. on 2/8/15.
+//  Copyright (c) 2015 Bishwajit Aich. All rights reserved.
+//
+
+#import "TwitterClient.h"
+#import "Tweet.h"
+#import "User.h"
+
+NSString* const twitterConsumerKey = @"wZJSfb7AUsz90BKnXa87EqsXB";
+NSString* const twitterSecretKey = @"zp8fOM586W0umd5VVaIad9XeWkqK46dBxZZZqNBcRFwwGNCSkc";
+NSString* const baseUrl = @"https://api.twitter.com";
+
+@interface TwitterClient()
+
+@property (strong, nonatomic) void (^loginCompletion)(User *user, NSError *error);
+
+@end
+
+@implementation TwitterClient
+
++ (TwitterClient*) sharedInstance {
+    static TwitterClient* instance = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (instance == nil) {
+            instance = [[TwitterClient alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]
+                                                  consumerKey:twitterConsumerKey
+                                               consumerSecret:twitterSecretKey];
+        }
+    });
+    return instance;
+}
+
+- (void)loginWithCompletion:(void (^)(User *user, NSError *error))completion {
+    self.loginCompletion = completion;
+    
+    [self.requestSerializer removeAccessToken];
+    [self fetchRequestTokenWithPath:@"oauth/request_token" method:@"GET" callbackURL:[NSURL URLWithString:@"tweetdemooauth://oauth"] scope:nil success:^(BDBOAuth1Credential *requestToken) {
+        NSString *authURL = [NSString stringWithFormat:@"https://api.twitter.com/oauth/authorize?oauth_token=%@", requestToken.token];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:authURL]];
+    } failure:^(NSError *error) {
+        NSLog(@"Error: %@", error.localizedDescription);
+        self.loginCompletion(nil, error);
+    }];
+}
+
+- (void)openURL:(NSURL*) url {
+    if ([url.scheme isEqualToString:@"tweetdemooauth"]) {
+        if ([url.host isEqualToString:@"oauth"]) {
+            [self fetchAccessTokenWithPath:@"oauth/access_token" method:@"POST" requestToken:[BDBOAuth1Credential credentialWithQueryString:url.query] success:^(BDBOAuth1Credential *accessToken) {
+                NSLog(@"got access token");
+                [self.requestSerializer saveAccessToken:accessToken];
+                
+                [self GET:@"1.1/account/verify_credentials.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    User* user = [[User alloc] initWithDictionary:responseObject];
+                    self.loginCompletion(user, nil);
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    NSLog(@"failed to get user");
+                    self.loginCompletion(nil, error);
+                }];
+                
+                /*[self GET:@"1.1/statuses/home_timeline.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    NSArray* tweets = [Tweet tweetsWithDictionary:responseObject];
+                    for (Tweet* tweet in tweets) {
+                        NSLog(@"%@, %@", tweet.tweet, tweet.created_at);
+                    }
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    NSLog(@"failed to get tweets");
+                }];*/
+            } failure:^(NSError *error) {
+                NSLog(@"failed to get access token");
+            }];
+        }
+    }
+}
+
+@end
