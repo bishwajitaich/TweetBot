@@ -61,9 +61,12 @@
                             <constraint firstAttribute="width" constant="27" id="TvZ-NN-cTI"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <state key="normal" image="favorite">
+                        <state key="normal" backgroundImage="favorite">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="onFavorite:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gtO-lK-1ch"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7e9-5v-Xbj">
                         <rect key="frame" x="121" y="84" width="23" height="26"/>
@@ -75,6 +78,9 @@
                         <state key="normal" backgroundImage="retweet">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="onRetweet:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="sPf-Z5-NSr"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0i5-2P-Lwm">
                         <rect key="frame" x="50" y="84" width="26" height="26"/>
@@ -87,6 +93,9 @@
                         <state key="normal" backgroundImage="reply">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="onReply:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="jg5-sB-TA8"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2n-k3-ME7">
                         <rect key="frame" x="223" y="88" width="40" height="17"/>
@@ -147,7 +156,10 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="favoriteButton" destination="nW6-Gr-waH" id="SOo-k6-rTT"/>
                 <outlet property="favoriteCount" destination="z2n-k3-ME7" id="LWW-vN-IQP"/>
+                <outlet property="replyButton" destination="0i5-2P-Lwm" id="nB0-gA-nH5"/>
+                <outlet property="retweetButton" destination="7e9-5v-Xbj" id="FSA-Hh-b4c"/>
                 <outlet property="retweetCount" destination="gL6-97-gro" id="bcD-Bd-SDk"/>
                 <outlet property="retweetLabel" destination="esF-bg-hsP" id="O7D-MY-tZG"/>
                 <outlet property="tweetCreatedOn" destination="t5K-mw-Z2K" id="hdc-hr-o7b"/>

@@ -8,6 +8,7 @@
 
 #import "TweetViewCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "TwitterClient.h"
 
 @interface TweetViewCell()
 @property (weak, nonatomic) IBOutlet UILabel *retweetLabel;
@@ -18,6 +19,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *tweetText;
 @property (weak, nonatomic) IBOutlet UILabel *favoriteCount;
 @property (weak, nonatomic) IBOutlet UILabel *retweetCount;
+- (IBAction)onReply:(id)sender;
+- (IBAction)onRetweet:(id)sender;
+- (IBAction)onFavorite:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIButton *retweetButton;
+@property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
+@property (weak, nonatomic) IBOutlet UIButton *replyButton;
 
 @end
 
@@ -37,6 +45,8 @@
 }
 
 - (void)setTweet:(Tweet *)tweet {
+    _tweet = tweet;
+    
     NSString* profileImage = tweet.user.profileImageUrl;
     [self.tweetThumbnail setImageWithURL:[NSURL URLWithString:profileImage]];
     self.tweetName.text = tweet.user.name;
@@ -62,6 +72,37 @@
         self.favoriteCount.text = [NSString stringWithFormat:@"%ld", tweet.favorited_count];
         self.favoriteCount.hidden = NO;
     }
+    
+    if (self.tweet.retweeted) {
+        [self.retweetButton setBackgroundImage:[UIImage imageNamed:@"retweet_on"] forState:UIControlStateNormal];
+    } else {
+        [self.retweetButton setBackgroundImage:[UIImage imageNamed:@"retweet"] forState:UIControlStateNormal];
+    }
+    
+    if (self.tweet.favorited) {
+        [self.favoriteButton setBackgroundImage:[UIImage imageNamed:@"favorite_on"] forState:UIControlStateNormal];
+    } else {
+        [self.favoriteButton setBackgroundImage:[UIImage imageNamed:@"favorite"] forState:UIControlStateNormal];
+    }
 }
 
+- (IBAction)onReply:(id)sender {
+}
+
+- (IBAction)onRetweet:(id)sender {
+    [[TwitterClient sharedInstance]retweetWithParams:self.tweet.id_str completion:^(Tweet *tweet, NSError *error) {
+        if (error == nil) {
+            self.tweet = tweet;
+        }
+    }];
+}
+
+- (IBAction)onFavorite:(id)sender {
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:self.tweet.id_str, @"id", nil];
+    [[TwitterClient sharedInstance]favoriteWithParams:params completion:^(Tweet *tweet, NSError *error) {
+        if (error == nil) {
+            self.tweet = tweet;
+        }
+    }];
+}
 @end

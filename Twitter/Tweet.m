@@ -25,11 +25,11 @@
         
         YLMoment *moment = [YLMoment momentWithDateAsString:dictionary[@"created_at"]];
         self.created_at = [moment fromNow];
-        self.favorited = dictionary[@"favorited"];
-        self.retweeted = dictionary[@"retweeted"];
+        self.favorited = [dictionary[@"favorited"] integerValue];
+        self.retweeted = [dictionary[@"retweeted"] integerValue];
         self.id_str = dictionary[@"id_str"];
         self.retweet_count = [dictionary[@"retweet_count"] integerValue];
-        self.favorited_count = [dictionary[@"favourites_count"] integerValue];
+        self.favorited_count = [dictionary[@"favorite_count"] integerValue];
     }
     NSLog(@"Tweet %@", dictionary);
     return self;

@@ -73,10 +73,8 @@ NSString* const baseUrl = @"https://api.twitter.com";
 
 - (void)homeTimelineWithParams:(NSDictionary *)params completion:(void (^)(NSArray *tweets, NSError *error))completion {
     [self GET:@"1.1/statuses/home_timeline.json?count=20" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
         NSArray *tweets = [Tweet tweetsWithDictionary:responseObject];
         completion(tweets, nil);
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         completion(nil, error);
     }];
@@ -85,6 +83,25 @@ NSString* const baseUrl = @"https://api.twitter.com";
 
 - (void)postTweetWithParams:(NSDictionary *)params completion:(void (^)(Tweet *, NSError *))completion {
     [self POST:@"1.1/statuses/update.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        Tweet *tweet = [[Tweet alloc] initWithDictionary:responseObject];
+        completion(tweet, nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completion(nil, error);
+    }];
+}
+
+- (void)retweetWithParams:(NSString *)tweet_id completion:(void (^)(Tweet *, NSError *))completion {
+    NSString *url = [NSString stringWithFormat:@"1.1/statuses/retweet/%@.json", tweet_id];
+    [self POST:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        Tweet *tweet = [[Tweet alloc] initWithDictionary:responseObject];
+        completion(tweet, nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completion(nil, error);
+    }];
+}
+
+- (void)favoriteWithParams:(NSDictionary *)params completion:(void (^)(Tweet *, NSError *))completion {
+    [self POST:@"1.1/favorites/create.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         Tweet *tweet = [[Tweet alloc] initWithDictionary:responseObject];
         completion(tweet, nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
