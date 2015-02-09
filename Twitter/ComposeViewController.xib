@@ -31,8 +31,8 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New Tweet" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLK-bc-ALg">
-                    <rect key="frame" x="15" y="72" width="84" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What's happening?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLK-bc-ALg">
+                    <rect key="frame" x="15" y="72" width="122" height="21"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -60,7 +60,7 @@
                 <constraint firstItem="2ab-xG-Lnz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="kQn-nb-yCO"/>
                 <constraint firstItem="fYf-gi-lSW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="tW3-Cm-r9W"/>
             </constraints>
-            <point key="canvasLocation" x="296" y="291"/>
+            <point key="canvasLocation" x="75" y="246"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

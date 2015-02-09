@@ -64,7 +64,8 @@
 #pragma mark - compose view delegate
 
 - (void) didPostTweet:(Tweet *)tweet {
-    [self refreshTweets];
+    [self.tweets insertObject:tweet atIndex:0];
+    [self.tableView reloadData];
 }
 
 #pragma mark - action handlers
