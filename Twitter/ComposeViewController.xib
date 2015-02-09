@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ComposeViewController">
+            <connections>
+                <outlet property="statusTextView" destination="fYf-gi-lSW" id="vdP-eF-nSr"/>
+                <outlet property="textView" destination="fYf-gi-lSW" id="yok-Zc-X9w"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UaC-g0-1Hi">
+                    <rect key="frame" x="269" y="179" width="36" height="30"/>
+                    <state key="normal" title="Send">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onSend:" destination="-1" eventType="touchUpInside" id="xU9-Ta-jxx"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="140 characters left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ab-xG-Lnz">
+                    <rect key="frame" x="15" y="183" width="87.5" height="22"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New Tweet" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLK-bc-ALg">
+                    <rect key="frame" x="15" y="72" width="84" height="21"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fYf-gi-lSW">
+                    <rect key="frame" x="15" y="96" width="290" height="82"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="82" id="Kge-Dc-GYW"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="2ab-xG-Lnz" firstAttribute="top" secondItem="fYf-gi-lSW" secondAttribute="bottom" constant="5" id="1jI-q1-Kc3"/>
+                <constraint firstAttribute="trailing" secondItem="fYf-gi-lSW" secondAttribute="trailing" constant="15" id="8gq-IO-IrY"/>
+                <constraint firstItem="fYf-gi-lSW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="96" id="8x1-Tb-dFK"/>
+                <constraint firstItem="2ab-xG-Lnz" firstAttribute="centerY" secondItem="UaC-g0-1Hi" secondAttribute="centerY" id="FNA-vn-lBQ"/>
+                <constraint firstAttribute="trailing" secondItem="UaC-g0-1Hi" secondAttribute="trailing" constant="15" id="Fpg-dN-Ruv"/>
+                <constraint firstItem="UaC-g0-1Hi" firstAttribute="top" secondItem="fYf-gi-lSW" secondAttribute="bottom" constant="1" id="KND-27-7eY"/>
+                <constraint firstItem="UaC-g0-1Hi" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2ab-xG-Lnz" secondAttribute="trailing" constant="60" id="TDv-1S-FZU"/>
+                <constraint firstItem="2ab-xG-Lnz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="kQn-nb-yCO"/>
+                <constraint firstItem="fYf-gi-lSW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="tW3-Cm-r9W"/>
+            </constraints>
+            <point key="canvasLocation" x="296" y="291"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

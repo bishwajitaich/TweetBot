@@ -11,6 +11,8 @@
 		5068207C1A87EC1800F966E5 /* TweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5068207A1A87EC1800F966E5 /* TweetViewController.xib */; };
 		506820811A88504500F966E5 /* TweetViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5068207F1A88504500F966E5 /* TweetViewCell.m */; };
 		506820821A88504500F966E5 /* TweetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506820801A88504500F966E5 /* TweetViewCell.xib */; };
+		5068208E1A889BB800F966E5 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5068208C1A889BB800F966E5 /* ComposeViewController.m */; };
+		5068208F1A889BB800F966E5 /* ComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5068208D1A889BB800F966E5 /* ComposeViewController.xib */; };
 		508DDD9D1A874F2500042774 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 508DDD9C1A874F2500042774 /* main.m */; };
 		508DDDA01A874F2500042774 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 508DDD9F1A874F2500042774 /* AppDelegate.m */; };
 		508DDDA81A874F2500042774 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 508DDDA71A874F2500042774 /* Images.xcassets */; };
@@ -41,6 +43,9 @@
 		5068207E1A88504500F966E5 /* TweetViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetViewCell.h; sourceTree = "<group>"; };
 		5068207F1A88504500F966E5 /* TweetViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetViewCell.m; sourceTree = "<group>"; };
 		506820801A88504500F966E5 /* TweetViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetViewCell.xib; sourceTree = "<group>"; };
+		5068208B1A889BB800F966E5 /* ComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
+		5068208C1A889BB800F966E5 /* ComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
+		5068208D1A889BB800F966E5 /* ComposeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeViewController.xib; sourceTree = "<group>"; };
 		508DDD971A874F2500042774 /* Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		508DDD9B1A874F2500042774 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		508DDD9C1A874F2500042774 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -132,6 +137,9 @@
 				506820781A87EC1800F966E5 /* TweetViewController.h */,
 				506820791A87EC1800F966E5 /* TweetViewController.m */,
 				5068207A1A87EC1800F966E5 /* TweetViewController.xib */,
+				5068208B1A889BB800F966E5 /* ComposeViewController.h */,
+				5068208C1A889BB800F966E5 /* ComposeViewController.m */,
+				5068208D1A889BB800F966E5 /* ComposeViewController.xib */,
 			);
 			path = Twitter;
 			sourceTree = "<group>";
@@ -273,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5068207C1A87EC1800F966E5 /* TweetViewController.xib in Resources */,
+				5068208F1A889BB800F966E5 /* ComposeViewController.xib in Resources */,
 				508DDDAB1A874F2500042774 /* LaunchScreen.xib in Resources */,
 				506820821A88504500F966E5 /* TweetViewCell.xib in Resources */,
 				508DDDA81A874F2500042774 /* Images.xcassets in Resources */,
@@ -330,6 +339,7 @@
 				5068207B1A87EC1800F966E5 /* TweetViewController.m in Sources */,
 				508DDDC71A875A1C00042774 /* TwitterClient.m in Sources */,
 				508DDDA01A874F2500042774 /* AppDelegate.m in Sources */,
+				5068208E1A889BB800F966E5 /* ComposeViewController.m in Sources */,
 				508DDDCE1A8770B900042774 /* User.m in Sources */,
 				508DDDCB1A8770A600042774 /* Tweet.m in Sources */,
 				508DDD9D1A874F2500042774 /* main.m in Sources */,

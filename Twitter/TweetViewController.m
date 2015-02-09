@@ -11,8 +11,9 @@
 #import "UIImageView+AFNetworking.h"
 #import "TweetViewCell.h"
 #import "TwitterClient.h"
+#import "ComposeViewController.h"
 
-@interface TweetViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface TweetViewController () <UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *twitterHandle;
@@ -24,6 +25,7 @@
 
 @property (nonatomic, strong) TweetViewCell *prototypeCell;
 @property (nonatomic, strong) NSMutableArray* tweets;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -40,8 +42,15 @@
     // Table View Initialize
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    
+    // Register Nib and Cell Height
     [self.tableView registerNib:[UINib nibWithNibName:@"TweetViewCell" bundle:nil] forCellReuseIdentifier:@"TweetViewCell"];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    // Refresh Control
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refreshTweets) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
     
     [self refreshTweets];
     [self loadUserProfile];
@@ -52,39 +61,27 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - compose view delegate
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void) didPostTweet:(Tweet *)tweet {
+    [self refreshTweets];
 }
-*/
+
+#pragma mark - action handlers
 
 - (void)onLogout {
     [User logout];
 }
 
 - (void)onNewTweet {
-    
-}
-
-- (void)loadUserProfile {
-    User* user = [User currentUser];
-    self.name.text = user.name;
-    self.twitterHandle.text = [NSString stringWithFormat:@"@%@", user.username];
-    self.numberTweets.text = [NSString stringWithFormat:@"%ld", (long)user.tweetCount];
-    self.numberFollower.text = [NSString stringWithFormat:@"%ld", (long)user.followerCount];
-    self.numberFollowing.text = [NSString stringWithFormat:@"%ld", (long)user.followingCount];
-    NSString *hqImageUrl = [user.profileImageUrl stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
-    [self.profileImage setImageWithURL:[NSURL URLWithString:hqImageUrl]];
-    self.profileImage.layer.cornerRadius = 5;
-    self.profileImage.clipsToBounds = YES;
-     
+    ComposeViewController *vc = [[ComposeViewController alloc] init];
+    vc.delegate = self;
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:nvc animated:YES completion:nil];
 }
 
 #pragma mark - Table View methods
+
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.tweets.count;
 }
@@ -118,8 +115,23 @@
         if (error != nil) {
             NSLog(@"Error while loading tweets");
         }
+        [self.refreshControl endRefreshing];
         self.tweets = [tweets mutableCopy];
         [self.tableView reloadData];
     }];
+}
+
+- (void)loadUserProfile {
+    User* user = [User currentUser];
+    self.name.text = user.name;
+    self.twitterHandle.text = [NSString stringWithFormat:@"@%@", user.username];
+    self.numberTweets.text = [NSString stringWithFormat:@"%ld", (long)user.tweetCount];
+    self.numberFollower.text = [NSString stringWithFormat:@"%ld", (long)user.followerCount];
+    self.numberFollowing.text = [NSString stringWithFormat:@"%ld", (long)user.followingCount];
+    NSString *hqImageUrl = [user.profileImageUrl stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+    [self.profileImage setImageWithURL:[NSURL URLWithString:hqImageUrl]];
+    self.profileImage.layer.cornerRadius = 5;
+    self.profileImage.clipsToBounds = YES;
+    
 }
 @end
