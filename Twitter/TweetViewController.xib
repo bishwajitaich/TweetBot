@@ -96,10 +96,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dje-c0-uBD">
-                            <rect key="frame" x="8" y="8" width="69" height="75"/>
+                            <rect key="frame" x="8" y="8" width="69" height="65"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="69" id="Qlg-4U-MRf"/>
-                                <constraint firstAttribute="height" constant="75" id="eoI-TE-hoV"/>
+                                <constraint firstAttribute="height" constant="65" id="eoI-TE-hoV"/>
                             </constraints>
                         </imageView>
                     </subviews>

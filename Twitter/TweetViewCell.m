@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *tweetUsername;
 @property (weak, nonatomic) IBOutlet UILabel *tweetCreatedOn;
 @property (weak, nonatomic) IBOutlet UILabel *tweetText;
+@property (weak, nonatomic) IBOutlet UILabel *favoriteCount;
+@property (weak, nonatomic) IBOutlet UILabel *retweetCount;
 
 @end
 
@@ -24,6 +26,8 @@
 - (void)awakeFromNib {
     // Initialization code
     self.retweetLabel.hidden = YES;
+    self.tweetThumbnail.layer.cornerRadius = 3;
+    self.tweetThumbnail.clipsToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -40,14 +44,24 @@
     self.tweetCreatedOn.text = tweet.created_at;
     self.tweetText.text = tweet.tweet;
     
+    self.retweetLabel.hidden = YES;
+    self.favoriteCount.hidden = YES;
+    self.retweetCount.hidden = YES;
+    
     if (tweet.retweetUser.name) {
         self.retweetLabel.text = [NSString stringWithFormat:@"%@ retweeted", tweet.retweetUser.name];
         self.retweetLabel.hidden = NO;
-    } else {
-        self.retweetLabel.hidden = YES;
     }
     
-    [self.tweetText sizeToFit];
+    if (tweet.retweet_count > 0) {
+        self.retweetCount.text = [NSString stringWithFormat:@"%ld", tweet.retweet_count];
+        self.retweetCount.hidden = NO;
+    }
+    
+    if (tweet.favorited_count > 0) {
+        self.favoriteCount.text = [NSString stringWithFormat:@"%ld", tweet.favorited_count];
+        self.favoriteCount.hidden = NO;
+    }
 }
 
 @end

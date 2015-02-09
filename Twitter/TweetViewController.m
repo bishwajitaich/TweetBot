@@ -79,7 +79,7 @@
     self.numberFollowing.text = [NSString stringWithFormat:@"%ld", (long)user.followingCount];
     NSString *hqImageUrl = [user.profileImageUrl stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
     [self.profileImage setImageWithURL:[NSURL URLWithString:hqImageUrl]];
-    self.profileImage.layer.cornerRadius = 3;
+    self.profileImage.layer.cornerRadius = 5;
     self.profileImage.clipsToBounds = YES;
      
 }
