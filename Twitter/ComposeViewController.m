@@ -9,10 +9,10 @@
 #import "ComposeViewController.h"
 #import "TwitterClient.h"
 
-@interface ComposeViewController ()
+@interface ComposeViewController () <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 - (IBAction)onSend:(id)sender;
-@property (weak, nonatomic) IBOutlet UITextView *statusTextView;
+@property (weak, nonatomic) IBOutlet UILabel *remainingCount;
 
 @end
 
@@ -25,6 +25,8 @@
     
     self.textView.contentInset = UIEdgeInsetsMake(-7.0,0.0,0,0.0);
     [self.textView becomeFirstResponder];
+    
+    self.textView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,7 +39,7 @@
 }
 
 - (IBAction)onSend:(id)sender {
-    NSString *status = self.statusTextView.text;
+    NSString *status = self.textView.text;
     NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:status,@"status", nil];
     [[TwitterClient sharedInstance]postTweetWithParams:dictionary completion:^(Tweet *tweet, NSError *error) {
         if (error != nil) {
@@ -47,5 +49,16 @@
             [self dismissViewControllerAnimated:YES completion:nil];
         }
     }];
+}
+
+#pragma mark - TextView delegate methods
+- (void)textViewDidChange:(UITextView *)textView {
+    NSInteger count = 140 - textView.text.length;
+    if (count < 0) {
+        self.remainingCount.textColor = [UIColor redColor];
+    } else {
+        self.remainingCount.textColor = [UIColor blackColor];
+    }
+    self.remainingCount.text = [NSString stringWithFormat:@"%ld characters left",140 - textView.text.length];
 }
 @end

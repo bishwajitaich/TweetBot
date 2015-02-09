@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ComposeViewController">
             <connections>
-                <outlet property="statusTextView" destination="fYf-gi-lSW" id="vdP-eF-nSr"/>
+                <outlet property="remainingCount" destination="2ab-xG-Lnz" id="kw9-Nz-yW7"/>
                 <outlet property="textView" destination="fYf-gi-lSW" id="yok-Zc-X9w"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
