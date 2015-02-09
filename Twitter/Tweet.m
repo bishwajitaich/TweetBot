@@ -15,12 +15,23 @@
     self = [super init];
     
     if (self) {
-        self.user = [[User alloc]initWithDictionary:dictionary[@"user"]];
+        if (dictionary[@"retweeted_status"]) {
+            self.user = [[User alloc]initWithDictionary:dictionary[@"retweeted_status"][@"user"]];
+            self.retweetUser = [[User alloc]initWithDictionary:dictionary[@"user"]];
+        } else {
+            self.user = [[User alloc]initWithDictionary:dictionary[@"user"]];
+        }
         self.tweet = dictionary[@"text"];
         
         YLMoment *moment = [YLMoment momentWithDateAsString:dictionary[@"created_at"]];
         self.created_at = [moment fromNow];
+        self.favorited = dictionary[@"favorited"];
+        self.retweeted = dictionary[@"retweeted"];
+        self.id_str = dictionary[@"id_str"];
+        self.retweet_count = [dictionary[@"retweet_count"] integerValue];
+        self.favorited_count = [dictionary[@"favourites_count"] integerValue];
     }
+    NSLog(@"Tweet %@", dictionary);
     return self;
 }
 

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5068207B1A87EC1800F966E5 /* TweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506820791A87EC1800F966E5 /* TweetViewController.m */; };
 		5068207C1A87EC1800F966E5 /* TweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5068207A1A87EC1800F966E5 /* TweetViewController.xib */; };
+		506820811A88504500F966E5 /* TweetViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5068207F1A88504500F966E5 /* TweetViewCell.m */; };
+		506820821A88504500F966E5 /* TweetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506820801A88504500F966E5 /* TweetViewCell.xib */; };
 		508DDD9D1A874F2500042774 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 508DDD9C1A874F2500042774 /* main.m */; };
 		508DDDA01A874F2500042774 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 508DDD9F1A874F2500042774 /* AppDelegate.m */; };
 		508DDDA81A874F2500042774 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 508DDDA71A874F2500042774 /* Images.xcassets */; };
@@ -36,6 +38,9 @@
 		506820781A87EC1800F966E5 /* TweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetViewController.h; sourceTree = "<group>"; };
 		506820791A87EC1800F966E5 /* TweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetViewController.m; sourceTree = "<group>"; };
 		5068207A1A87EC1800F966E5 /* TweetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetViewController.xib; sourceTree = "<group>"; };
+		5068207E1A88504500F966E5 /* TweetViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetViewCell.h; sourceTree = "<group>"; };
+		5068207F1A88504500F966E5 /* TweetViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetViewCell.m; sourceTree = "<group>"; };
+		506820801A88504500F966E5 /* TweetViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetViewCell.xib; sourceTree = "<group>"; };
 		508DDD971A874F2500042774 /* Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		508DDD9B1A874F2500042774 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		508DDD9C1A874F2500042774 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -79,6 +84,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5068207D1A88500400F966E5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5068207E1A88504500F966E5 /* TweetViewCell.h */,
+				5068207F1A88504500F966E5 /* TweetViewCell.m */,
+				506820801A88504500F966E5 /* TweetViewCell.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		508DDD8E1A874F2500042774 = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +117,7 @@
 		508DDD991A874F2500042774 /* Twitter */ = {
 			isa = PBXGroup;
 			children = (
+				5068207D1A88500400F966E5 /* Views */,
 				508DDDC81A87706300042774 /* Models */,
 				508DDD9E1A874F2500042774 /* AppDelegate.h */,
 				508DDD9F1A874F2500042774 /* AppDelegate.m */,
@@ -258,6 +274,7 @@
 			files = (
 				5068207C1A87EC1800F966E5 /* TweetViewController.xib in Resources */,
 				508DDDAB1A874F2500042774 /* LaunchScreen.xib in Resources */,
+				506820821A88504500F966E5 /* TweetViewCell.xib in Resources */,
 				508DDDA81A874F2500042774 /* Images.xcassets in Resources */,
 				508DDDC41A87506000042774 /* LoginViewController.xib in Resources */,
 			);
@@ -316,6 +333,7 @@
 				508DDDCE1A8770B900042774 /* User.m in Sources */,
 				508DDDCB1A8770A600042774 /* Tweet.m in Sources */,
 				508DDD9D1A874F2500042774 /* main.m in Sources */,
+				506820811A88504500F966E5 /* TweetViewCell.m in Sources */,
 				508DDDC31A87506000042774 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

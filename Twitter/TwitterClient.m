@@ -64,20 +64,23 @@ NSString* const baseUrl = @"https://api.twitter.com";
                     NSLog(@"failed to get user");
                     self.loginCompletion(nil, error);
                 }];
-                
-                /*[self GET:@"1.1/statuses/home_timeline.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    NSArray* tweets = [Tweet tweetsWithDictionary:responseObject];
-                    for (Tweet* tweet in tweets) {
-                        NSLog(@"%@, %@", tweet.tweet, tweet.created_at);
-                    }
-                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    NSLog(@"failed to get tweets");
-                }];*/
             } failure:^(NSError *error) {
                 NSLog(@"failed to get access token");
             }];
         }
     }
+}
+
+- (void)homeTimelineWithParams:(NSDictionary *)params completion:(void (^)(NSArray *tweets, NSError *error))completion {
+    [self GET:@"1.1/statuses/home_timeline.json?count=20" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSArray *tweets = [Tweet tweetsWithDictionary:responseObject];
+        completion(tweets, nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completion(nil, error);
+    }];
+    
 }
 
 @end
