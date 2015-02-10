@@ -20,6 +20,7 @@
 @property (strong, nonatomic) NSString* id_str;
 @property (assign, nonatomic) NSInteger retweet_count;
 @property (assign, nonatomic) NSInteger favorited_count;
+@property (strong, nonatomic) NSArray* user_mentions;
 
 -(id) initWithDictionary:(NSDictionary*) dictionary;
 

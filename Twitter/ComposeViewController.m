@@ -27,6 +27,10 @@
     [self.textView becomeFirstResponder];
     
     self.textView.delegate = self;
+    if (self.prependMentions.length > 0) {
+        self.textView.text = [NSString stringWithFormat:@"%@ ", self.prependMentions];
+        [self textViewDidChange:self.textView];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,7 +44,10 @@
 
 - (IBAction)onSend:(id)sender {
     NSString *status = self.textView.text;
-    NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:status,@"status", nil];
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:status,@"status", nil];
+    if (self.prependMentions.length > 0) {
+        [dictionary setObject:self.in_reply_to_status_id forKey:@"in_reply_to_status_id"];
+    }
     [[TwitterClient sharedInstance]postTweetWithParams:dictionary completion:^(Tweet *tweet, NSError *error) {
         if (error != nil) {
             NSLog(@"Error occurred while posting tweet.");

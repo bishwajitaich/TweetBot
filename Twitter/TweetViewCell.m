@@ -9,6 +9,8 @@
 #import "TweetViewCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "TwitterClient.h"
+#import "ComposeViewController.h"
+#import "TweetViewController.h"
 
 @interface TweetViewCell()
 @property (weak, nonatomic) IBOutlet UILabel *retweetLabel;
@@ -87,6 +89,35 @@
 }
 
 - (IBAction)onReply:(id)sender {
+    NSArray* user_mentions = self.tweet.user_mentions;
+    NSMutableArray *screenNames = [NSMutableArray array];
+    /*
+     if retweet_user 
+     append retweetuser.username
+     else 
+     append user.username
+     
+     */
+    if (self.tweet.retweetUser.name) {
+        [screenNames addObject:[NSString stringWithFormat:@"@%@", self.tweet.retweetUser.username]];
+    } else {
+        [screenNames addObject:[NSString stringWithFormat:@"@%@", self.tweet.user.username]];
+    }
+    
+    for(NSDictionary *mention in user_mentions) {
+        [screenNames addObject:[NSString stringWithFormat:@"@%@", mention[@"screen_name"]]];
+    }
+    
+    ComposeViewController *vc = [[ComposeViewController alloc]init];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+    
+    vc.in_reply_to_status_id = self.tweet.id_str;
+    vc.prependMentions = [screenNames componentsJoinedByString:@" "];
+    
+    UITableView *tv = (UITableView *) self.superview.superview;
+    TweetViewController *tvc = (TweetViewController *) tv.dataSource;
+    
+    [tvc presentViewController:nvc animated:YES completion:nil];
 }
 
 - (IBAction)onRetweet:(id)sender {

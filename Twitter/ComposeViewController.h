@@ -18,5 +18,7 @@
 @interface ComposeViewController : UIViewController
 
 @property (weak, nonatomic) id<ComposeViewControllerDelegate> delegate;
+@property (strong, nonatomic) NSString* in_reply_to_status_id;
+@property (strong, nonatomic) NSString* prependMentions;
 
 @end

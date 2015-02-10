@@ -3,18 +3,35 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[TweetViewCell onRetweet:]:TweetViewCell.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[TweetViewCell setTweet:]:TweetViewCell.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[TweetViewCell onReply:]:TweetViewCell.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "tv.superview">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__36-[TweetViewController refreshTweets]_block_invoke:TweetViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[TweetViewController tableView:numberOfRowsInSection:]:TweetViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__46-[TwitterClient retweetWithParams:completion:]_block_invoke129:TwitterClient.m">
+      </ContextState>
+      <ContextState
          contextName = "-[User initWithDictionary:]:User.m">
          <PersistentStrings>
             <PersistentString
                value = "dictionary[@&quot;name&quot;]">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[TweetViewController tableView:numberOfRowsInSection:]:TweetViewController.m">
-      </ContextState>
-      <ContextState
-         contextName = "__36-[TweetViewController refreshTweets]_block_invoke:TweetViewController.m">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

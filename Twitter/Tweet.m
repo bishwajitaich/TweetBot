@@ -30,6 +30,7 @@
         self.id_str = dictionary[@"id_str"];
         self.retweet_count = [dictionary[@"retweet_count"] integerValue];
         self.favorited_count = [dictionary[@"favorite_count"] integerValue];
+        self.user_mentions = dictionary[@"entities"][@"user_mentions"];
     }
     NSLog(@"Tweet %@", dictionary);
     return self;
