@@ -14,7 +14,7 @@
 #import "ComposeViewController.h"
 #import "TweetDetailViewController.h"
 
-@interface TweetViewController () <UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate, TweetViewCellDelegate>
+@interface TweetViewController () <UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate, TweetViewCellDelegate, TweetDetailViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *twitterHandle;
@@ -69,11 +69,20 @@
     [self.tableView reloadData];
 }
 
-#pragma mark - update cell delegate
+#pragma mark - tweet cell delegate
 
 - (void)didUpdateCell:(UITableViewCell *) cell withTweet:(Tweet*)tweet {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     [self.tweets  replaceObjectAtIndex:indexPath.row withObject:tweet];
+}
+
+#pragma mark - detail view delegate
+
+- (void)didUpdateTweet:(Tweet *)tweet atIndexPath:(NSInteger)row {
+    [self.tweets  replaceObjectAtIndex:row withObject:tweet];
+    NSIndexPath* indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+    NSArray* indexArray = [NSArray arrayWithObjects:indexPath, nil];
+    [self.tableView reloadRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark - action handlers
@@ -123,6 +132,8 @@
     
     TweetDetailViewController *vc = [[TweetDetailViewController alloc] init];
     vc.tweet = self.tweets[indexPath.row];
+    vc.tweetIndex = indexPath.row;
+    vc.delegate = self;
     
     [self.navigationController pushViewController:vc animated:YES];
 }

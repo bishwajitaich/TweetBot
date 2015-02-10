@@ -122,6 +122,7 @@
         if (error == nil) {
             self.tweet = tweet;
             [self renderTweet];
+            [self.delegate didUpdateTweet:tweet atIndexPath:self.tweetIndex];
         }
     }];
 }
@@ -132,6 +133,7 @@
         if (error == nil) {
             self.tweet = tweet;
             [self renderTweet];
+            [self.delegate didUpdateTweet:tweet atIndexPath:self.tweetIndex];
         }
     }];
 }
