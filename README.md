@@ -27,4 +27,4 @@ Time spent: `<Number of hours spent>`
 - [ ] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
 
 ### Walkthrough
-![tweetbot](https://cloud.githubusercontent.com/assets/4771383/6119231/e8380e74-b07a-11e4-9387-b9731c03b025.gif)
+![tweetbot](https://cloud.githubusercontent.com/assets/4771383/6123277/d729ea1e-b0b4-11e4-9144-aa4b9a0ef9c3.gif)
