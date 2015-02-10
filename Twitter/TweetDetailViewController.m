@@ -123,18 +123,30 @@
             self.tweet = tweet;
             [self renderTweet];
             [self.delegate didUpdateTweet:tweet atIndexPath:self.tweetIndex];
+            
+            NSLog(@"Retweet %@", tweet);
         }
     }];
 }
 
 - (IBAction)onFavorite:(id)sender {
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:self.tweet.id_str, @"id", nil];
-    [[TwitterClient sharedInstance]favoriteWithParams:params completion:^(Tweet *tweet, NSError *error) {
-        if (error == nil) {
-            self.tweet = tweet;
-            [self renderTweet];
-            [self.delegate didUpdateTweet:tweet atIndexPath:self.tweetIndex];
-        }
-    }];
+    if (self.tweet.favorited) {
+        [[TwitterClient sharedInstance]unfavoriteWithParams:params completion:^(Tweet *tweet, NSError *error) {
+            if (error == nil) {
+                self.tweet = tweet;
+                [self renderTweet];
+                [self.delegate didUpdateTweet:tweet atIndexPath:self.tweetIndex];
+            }
+        }];
+    } else {
+        [[TwitterClient sharedInstance]favoriteWithParams:params completion:^(Tweet *tweet, NSError *error) {
+            if (error == nil) {
+                self.tweet = tweet;
+                [self renderTweet];
+                [self.delegate didUpdateTweet:tweet atIndexPath:self.tweetIndex];
+            }
+        }];
+    }
 }
 @end

@@ -109,6 +109,15 @@ NSString* const baseUrl = @"https://api.twitter.com";
     }];
 }
 
+- (void)unfavoriteWithParams:(NSDictionary* ) params completion:(void (^)(Tweet *tweet, NSError *error))completion {
+    [self POST:@"1.1/favorites/destroy.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        Tweet *tweet = [[Tweet alloc] initWithDictionary:responseObject];
+        completion(tweet, nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completion(nil, error);
+    }];
+}
+
 - (void)getTweetWithId:(NSString *)tweet_id completion:(void (^)(Tweet *tweet, NSError *error))completion {
     NSDictionary *params = @{@"id" : tweet_id};
     

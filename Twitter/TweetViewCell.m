@@ -131,11 +131,20 @@
 
 - (IBAction)onFavorite:(id)sender {
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:self.tweet.id_str, @"id", nil];
-    [[TwitterClient sharedInstance]favoriteWithParams:params completion:^(Tweet *tweet, NSError *error) {
-        if (error == nil) {
-            self.tweet = tweet;
-            [self.delegate didUpdateCell:self withTweet:tweet];
-        }
-    }];
+    if (self.tweet.favorited) {
+        [[TwitterClient sharedInstance]unfavoriteWithParams:params completion:^(Tweet *tweet, NSError *error) {
+            if (error == nil) {
+                self.tweet = tweet;
+                [self.delegate didUpdateCell:self withTweet:tweet];
+            }
+        }];
+    } else {
+        [[TwitterClient sharedInstance]favoriteWithParams:params completion:^(Tweet *tweet, NSError *error) {
+            if (error == nil) {
+                self.tweet = tweet;
+                [self.delegate didUpdateCell:self withTweet:tweet];
+            }
+        }];
+    }
 }
 @end

@@ -56,10 +56,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZjZ-8g-UKi">
-                    <rect key="frame" x="95" y="232" width="38" height="30"/>
+                    <rect key="frame" x="95" y="232" width="33" height="31"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="mYg-qi-9BH"/>
-                        <constraint firstAttribute="width" constant="38" id="u5c-an-nLz"/>
+                        <constraint firstAttribute="height" constant="31" id="mYg-qi-9BH"/>
+                        <constraint firstAttribute="width" constant="33" id="u5c-an-nLz"/>
                     </constraints>
                     <state key="normal" backgroundImage="retweet">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -78,7 +78,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4300" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Mz-oy-D9e">
-                    <rect key="frame" x="131" y="236" width="32" height="21"/>
+                    <rect key="frame" x="126" y="236" width="32" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="v5B-kc-HXm"/>
                     </constraints>
@@ -124,13 +124,13 @@
                 <constraint firstItem="2bg-Tq-7bT" firstAttribute="centerY" secondItem="xTe-l3-61Y" secondAttribute="centerY" constant="1.5" id="c9w-pO-w2Z"/>
                 <constraint firstItem="2Mz-oy-D9e" firstAttribute="top" secondItem="5bx-Z9-jD3" secondAttribute="bottom" constant="39" id="eEw-YV-kqI"/>
                 <constraint firstItem="ZjZ-8g-UKi" firstAttribute="leading" secondItem="hGg-Qp-zbO" secondAttribute="trailing" constant="42" id="fCY-QC-4J4"/>
-                <constraint firstItem="xTe-l3-61Y" firstAttribute="leading" secondItem="2Mz-oy-D9e" secondAttribute="trailing" constant="26" id="hBm-cw-Xf9"/>
+                <constraint firstItem="xTe-l3-61Y" firstAttribute="leading" secondItem="2Mz-oy-D9e" secondAttribute="trailing" constant="31" id="hBm-cw-Xf9"/>
                 <constraint firstItem="2bg-Tq-7bT" firstAttribute="centerY" secondItem="hGg-Qp-zbO" secondAttribute="centerY" id="hbZ-Bk-rZx"/>
                 <constraint firstItem="5bx-Z9-jD3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="kgV-Sw-S0Z"/>
                 <constraint firstItem="hGg-Qp-zbO" firstAttribute="top" secondItem="5bx-Z9-jD3" secondAttribute="bottom" constant="35" id="o2H-D4-wK1"/>
                 <constraint firstItem="hGg-Qp-zbO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="rme-ke-JFX"/>
                 <constraint firstAttribute="trailing" secondItem="5bx-Z9-jD3" secondAttribute="trailing" constant="16" id="sUR-IW-jte"/>
-                <constraint firstItem="2bg-Tq-7bT" firstAttribute="centerY" secondItem="ZjZ-8g-UKi" secondAttribute="centerY" id="yy4-Lk-S2r"/>
+                <constraint firstItem="2bg-Tq-7bT" firstAttribute="centerY" secondItem="ZjZ-8g-UKi" secondAttribute="centerY" constant="-1" id="yy4-Lk-S2r"/>
             </constraints>
             <point key="canvasLocation" x="404" y="289"/>
         </view>
