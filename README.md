@@ -15,7 +15,7 @@ Time spent: `<Number of hours spent>`
 - [x] User can pull to refresh
 - [x] User can compose a new tweet by tapping on a compose button.
 - [ ] User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
-- [ ] User can retweet, favorite, and reply to the tweet directly from the timeline feed.
+- [x] User can retweet, favorite, and reply to the tweet directly from the timeline feed.
 
 #### Optional
 
@@ -27,3 +27,4 @@ Time spent: `<Number of hours spent>`
 - [ ] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
 
 ### Walkthrough
+![tweetbot](https://cloud.githubusercontent.com/assets/4771383/6119231/e8380e74-b07a-11e4-9387-b9731c03b025.gif)
