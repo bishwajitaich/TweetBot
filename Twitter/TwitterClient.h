@@ -20,5 +20,6 @@
 - (void)postTweetWithParams:(NSDictionary* ) params completion:(void (^)(Tweet *tweet, NSError *error))completion;
 - (void)retweetWithParams:(NSString* ) tweet_id completion:(void (^)(Tweet *tweet, NSError *error))completion;
 - (void)favoriteWithParams:(NSDictionary* ) params completion:(void (^)(Tweet *tweet, NSError *error))completion;
+- (void)getTweetWithId:(NSString *)tweetId completion:(void (^)(Tweet *tweet, NSError *error))completion;
 
 @end

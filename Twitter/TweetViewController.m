@@ -12,8 +12,9 @@
 #import "TweetViewCell.h"
 #import "TwitterClient.h"
 #import "ComposeViewController.h"
+#import "TweetDetailViewController.h"
 
-@interface TweetViewController () <UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate>
+@interface TweetViewController () <UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate, TweetViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *twitterHandle;
@@ -68,6 +69,13 @@
     [self.tableView reloadData];
 }
 
+#pragma mark - update cell delegate
+
+- (void)didUpdateCell:(UITableViewCell *) cell withTweet:(Tweet*)tweet {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    [self.tweets  replaceObjectAtIndex:indexPath.row withObject:tweet];
+}
+
 #pragma mark - action handlers
 
 - (void)onLogout {
@@ -90,6 +98,7 @@
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TweetViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetViewCell"];
     cell.tweet = self.tweets[indexPath.row];
+    cell.delegate = self;
     return cell;
 }
 
@@ -107,6 +116,15 @@
         _prototypeCell = [self.tableView dequeueReusableCellWithIdentifier:@"TweetViewCell"];
     }
     return _prototypeCell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    TweetDetailViewController *vc = [[TweetDetailViewController alloc] init];
+    vc.tweet = self.tweets[indexPath.row];
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - private methods

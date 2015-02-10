@@ -1,69 +1,70 @@
 //
-//  TweetViewCell.m
+//  TweetDetailViewController.m
 //  Twitter
 //
-//  Created by Bishwajit Aich. on 2/8/15.
+//  Created by Bishwajit Aich. on 2/9/15.
 //  Copyright (c) 2015 Bishwajit Aich. All rights reserved.
 //
 
-#import "TweetViewCell.h"
+#import "TweetDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "TwitterClient.h"
 #import "ComposeViewController.h"
-#import "TweetViewController.h"
 
-@interface TweetViewCell()
-@property (weak, nonatomic) IBOutlet UILabel *retweetLabel;
+@interface TweetDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *tweetThumbnail;
 @property (weak, nonatomic) IBOutlet UILabel *tweetName;
-@property (weak, nonatomic) IBOutlet UILabel *tweetUsername;
-@property (weak, nonatomic) IBOutlet UILabel *tweetCreatedOn;
+@property (weak, nonatomic) IBOutlet UILabel *tweetUserName;
 @property (weak, nonatomic) IBOutlet UILabel *tweetText;
-@property (weak, nonatomic) IBOutlet UILabel *favoriteCount;
+@property (weak, nonatomic) IBOutlet UIButton *replyButton;
+@property (weak, nonatomic) IBOutlet UIButton *retweetButton;
+@property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
 @property (weak, nonatomic) IBOutlet UILabel *retweetCount;
+@property (weak, nonatomic) IBOutlet UILabel *favoriteCount;
 - (IBAction)onReply:(id)sender;
 - (IBAction)onRetweet:(id)sender;
 - (IBAction)onFavorite:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UIButton *retweetButton;
-@property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
-@property (weak, nonatomic) IBOutlet UIButton *replyButton;
-
 @end
 
-@implementation TweetViewCell
+@implementation TweetDetailViewController
 
-- (void)awakeFromNib {
-    // Initialization code
-    self.retweetLabel.hidden = YES;
-    self.tweetThumbnail.layer.cornerRadius = 3;
-    self.tweetThumbnail.clipsToBounds = YES;
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    [[TwitterClient sharedInstance]getTweetWithId:self.tweet.id_str completion:^(Tweet *tweet, NSError *error) {
+        if (error == nil) {
+            self.tweet = tweet;
+            [self renderTweet];
+        }
+    }];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
-- (void)setTweet:(Tweet *)tweet {
-    _tweet = tweet;
-    
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+- (void)renderTweet {
+    Tweet* tweet = self.tweet;
     NSString* profileImage = tweet.user.profileImageUrl;
     [self.tweetThumbnail setImageWithURL:[NSURL URLWithString:profileImage]];
     self.tweetName.text = tweet.user.name;
-    self.tweetUsername.text = [NSString stringWithFormat:@"@%@",tweet.user.username];
-    self.tweetCreatedOn.text = tweet.created_at;
+    self.tweetUserName.text = [NSString stringWithFormat:@"@%@",tweet.user.username];
     self.tweetText.text = tweet.tweet;
     
-    self.retweetLabel.hidden = YES;
     self.favoriteCount.hidden = YES;
     self.retweetCount.hidden = YES;
-    
-    if (tweet.retweetUser.name) {
-        self.retweetLabel.text = [NSString stringWithFormat:@"%@ retweeted", tweet.retweetUser.name];
-        self.retweetLabel.hidden = NO;
-    }
     
     if (tweet.retweet_count > 0) {
         self.retweetCount.text = [NSString stringWithFormat:@"%ld", tweet.retweet_count];
@@ -87,14 +88,13 @@
         [self.favoriteButton setBackgroundImage:[UIImage imageNamed:@"favorite"] forState:UIControlStateNormal];
     }
 }
-
 - (IBAction)onReply:(id)sender {
     NSArray* user_mentions = self.tweet.user_mentions;
     NSMutableArray *screenNames = [NSMutableArray array];
     /*
-     if retweet_user 
+     if retweet_user
      append retweetuser.username
-     else 
+     else
      append user.username
      
      */
@@ -114,17 +114,14 @@
     vc.in_reply_to_status_id = self.tweet.id_str;
     vc.prependMentions = [screenNames componentsJoinedByString:@" "];
     
-    UITableView *tv = (UITableView *) self.superview.superview;
-    TweetViewController *tvc = (TweetViewController *) tv.dataSource;
-    
-    [tvc presentViewController:nvc animated:YES completion:nil];
+    [self presentViewController:nvc animated:YES completion:nil];
 }
 
 - (IBAction)onRetweet:(id)sender {
     [[TwitterClient sharedInstance]retweetWithParams:self.tweet.id_str completion:^(Tweet *tweet, NSError *error) {
         if (error == nil) {
             self.tweet = tweet;
-            [self.delegate didUpdateCell:self withTweet:tweet];
+            [self renderTweet];
         }
     }];
 }
@@ -134,7 +131,7 @@
     [[TwitterClient sharedInstance]favoriteWithParams:params completion:^(Tweet *tweet, NSError *error) {
         if (error == nil) {
             self.tweet = tweet;
-            [self.delegate didUpdateCell:self withTweet:tweet];
+            [self renderTweet];
         }
     }];
 }

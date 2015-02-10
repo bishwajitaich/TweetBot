@@ -109,4 +109,15 @@ NSString* const baseUrl = @"https://api.twitter.com";
     }];
 }
 
+- (void)getTweetWithId:(NSString *)tweet_id completion:(void (^)(Tweet *tweet, NSError *error))completion {
+    NSDictionary *params = @{@"id" : tweet_id};
+    
+    [self GET:@"1.1/statuses/show.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        Tweet *tweet = [[Tweet alloc] initWithDictionary:responseObject];
+        completion(tweet, nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completion(nil, error);
+    }];
+}
+
 @end
