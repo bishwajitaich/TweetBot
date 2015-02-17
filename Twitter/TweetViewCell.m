@@ -38,6 +38,11 @@
     self.retweetLabel.hidden = YES;
     self.tweetThumbnail.layer.cornerRadius = 3;
     self.tweetThumbnail.clipsToBounds = YES;
+    
+    UITapGestureRecognizer *aSingleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SingleTapGestureRecognizer:)];
+    aSingleTapGesture.delegate = self;
+    aSingleTapGesture.numberOfTapsRequired = 1;
+    [self.tweetThumbnail addGestureRecognizer:aSingleTapGesture];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -147,4 +152,9 @@
         }];
     }
 }
+
+- (void)SingleTapGestureRecognizer:(id)sender{
+    [self.delegate onImageTap:self withTweet:self.tweet];
+}
+
 @end

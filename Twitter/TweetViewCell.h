@@ -12,6 +12,7 @@
 @protocol TweetViewCellDelegate <NSObject>
 
 - (void)didUpdateCell:(UITableViewCell *) cell withTweet:(Tweet*)tweet;
+- (void)onImageTap:(UITableViewCell *) cell withTweet:(Tweet*)tweet;
 
 @end
 

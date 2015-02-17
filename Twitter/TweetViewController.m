@@ -13,6 +13,7 @@
 #import "TwitterClient.h"
 #import "ComposeViewController.h"
 #import "TweetDetailViewController.h"
+#import "UserTimelineViewController.h"
 
 @interface TweetViewController () <UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate, TweetViewCellDelegate, TweetDetailViewControllerDelegate>
 
@@ -74,6 +75,15 @@
 - (void)didUpdateCell:(UITableViewCell *) cell withTweet:(Tweet*)tweet {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     [self.tweets  replaceObjectAtIndex:indexPath.row withObject:tweet];
+}
+
+- (void)onImageTap:(UITableViewCell *)cell withTweet:(Tweet *)tweet {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    UserTimelineViewController* vc = [[UserTimelineViewController alloc] init];
+    vc.tweet = self.tweets[indexPath.row];
+    vc.user = vc.tweet.user;
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - detail view delegate

@@ -13,23 +13,23 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nDK-kW-kee">
-                        <rect key="frame" x="18" y="21" width="31" height="28.5"/>
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nDK-kW-kee">
+                        <rect key="frame" x="18" y="20.5" width="31" height="28.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="31" id="aDz-Q5-uOY"/>
                             <constraint firstAttribute="height" constant="28.5" id="fOy-Ou-wNw"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bishwajit aich retweeted" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esF-bg-hsP">
-                        <rect key="frame" x="58" y="5" width="113.5" height="12"/>
+                        <rect key="frame" x="58" y="5" width="113.5" height="11.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="The #ricebucketchallenge https://www.facebook.com/ricebucketchallenge/photos_stream … - India, I love you." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ShC-Ts-fL2">
-                        <rect key="frame" x="57" y="38" width="253" height="43.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="The #ricebucketchallenge https://www.facebook.com/ricebucketchallenge/photos_stream … - India, I love you." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ShC-Ts-fL2">
+                        <rect key="frame" x="57" y="37.5" width="253" height="44"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="43.5" id="ryK-lh-Ht4"/>
+                            <constraint firstAttribute="height" constant="44" id="ryK-lh-Ht4"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>

@@ -22,5 +22,7 @@
 - (void)favoriteWithParams:(NSDictionary* ) params completion:(void (^)(Tweet *tweet, NSError *error))completion;
 - (void)getTweetWithId:(NSString *)tweetId completion:(void (^)(Tweet *tweet, NSError *error))completion;
 - (void)unfavoriteWithParams:(NSDictionary* ) params completion:(void (^)(Tweet *tweet, NSError *error))completion;
+- (void)userTimelineWithParams:(NSDictionary *) params completion:(void (^)(NSArray *tweets, NSError *error))completion;
+- (void)mentionTimelineWithParams:(NSDictionary *) params completion:(void (^)(NSArray *tweets, NSError *error))completion;
 
 @end

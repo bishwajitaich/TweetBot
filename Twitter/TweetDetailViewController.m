@@ -38,6 +38,8 @@
             [self renderTweet];
         }
     }];
+    self.tweetThumbnail.layer.cornerRadius = 3;
+    self.tweetThumbnail.clipsToBounds = YES;
 }
 
 - (void)didReceiveMemoryWarning {

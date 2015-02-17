@@ -24,9 +24,9 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tep-WG-PR2">
-                    <rect key="frame" x="16" y="77" width="58" height="63"/>
+                    <rect key="frame" x="16" y="77" width="58" height="57"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="63" id="863-3p-CBp"/>
+                        <constraint firstAttribute="height" constant="57" id="863-3p-CBp"/>
                         <constraint firstAttribute="width" constant="58" id="XST-gW-vSt"/>
                     </constraints>
                 </imageView>
@@ -115,7 +115,7 @@
                 <constraint firstItem="2Mz-oy-D9e" firstAttribute="leading" secondItem="ZjZ-8g-UKi" secondAttribute="trailing" constant="-2" id="FSc-ze-D2C"/>
                 <constraint firstItem="Vqf-2q-sE9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="96" id="FiG-NZ-DLv"/>
                 <constraint firstItem="VTF-ju-bjb" firstAttribute="leading" secondItem="tep-WG-PR2" secondAttribute="trailing" constant="8" id="GTf-NA-3OD"/>
-                <constraint firstItem="5bx-Z9-jD3" firstAttribute="top" secondItem="tep-WG-PR2" secondAttribute="bottom" constant="8" id="HSa-bg-dvQ"/>
+                <constraint firstItem="5bx-Z9-jD3" firstAttribute="top" secondItem="tep-WG-PR2" secondAttribute="bottom" constant="14" id="HSa-bg-dvQ"/>
                 <constraint firstItem="Vqf-2q-sE9" firstAttribute="leading" secondItem="tep-WG-PR2" secondAttribute="trailing" constant="8" id="KZf-jO-iBF"/>
                 <constraint firstItem="tep-WG-PR2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="Qbl-g3-E2F"/>
                 <constraint firstItem="tep-WG-PR2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="77" id="QmU-zQ-1xY"/>

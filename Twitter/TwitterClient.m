@@ -78,7 +78,6 @@ NSString* const baseUrl = @"https://api.twitter.com";
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         completion(nil, error);
     }];
-    
 }
 
 - (void)postTweetWithParams:(NSDictionary *)params completion:(void (^)(Tweet *, NSError *))completion {
@@ -124,6 +123,24 @@ NSString* const baseUrl = @"https://api.twitter.com";
     [self GET:@"1.1/statuses/show.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         Tweet *tweet = [[Tweet alloc] initWithDictionary:responseObject];
         completion(tweet, nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completion(nil, error);
+    }];
+}
+
+- (void)userTimelineWithParams:(NSDictionary *)params completion:(void (^)(NSArray *tweets, NSError *error))completion {
+    [self GET:@"1.1/statuses/user_timeline.json?count=100" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *tweets = [Tweet tweetsWithDictionary:responseObject];
+        completion(tweets, nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completion(nil, error);
+    }];
+}
+
+- (void)mentionTimelineWithParams:(NSDictionary *)params completion:(void (^)(NSArray *twwets, NSError *error))completion {
+    [self GET:@"1.1/statuses/mentions_timeline.json?count=100" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *tweets = [Tweet tweetsWithDictionary:responseObject];
+        completion(tweets, nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         completion(nil, error);
     }];
